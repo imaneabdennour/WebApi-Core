@@ -62,5 +62,23 @@ namespace GestionCommande.Controllers
              The content value to format in the entity body
             */
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<CommandReadDTO> UpdateCommand(int id, CommandUpdateDTO commandUpdateDTO)
+        {
+            var commandModelFromRepo = _repository.GetCommandById(id);
+
+            if (commandModelFromRepo == null)
+                return NotFound();
+
+            _mapper.Map(commandUpdateDTO, commandModelFromRepo);    //updates commandModelFromRepo with content dial 1st param
+
+            _repository.UpdateCommand(commandModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+
+            // Response : OK
+        }
     }
 }

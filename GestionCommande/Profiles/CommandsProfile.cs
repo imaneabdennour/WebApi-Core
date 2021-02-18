@@ -16,6 +16,8 @@ namespace GestionCommande.Profiles
             CreateMap<Command, CommandReadDTO>();   // from command to commandreaddto
 
             CreateMap<CommandCreateDTO, Command>();
+
+            CreateMap<CommandUpdateDTO, Command>();
         }
     }
 }

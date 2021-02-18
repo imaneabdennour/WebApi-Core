@@ -13,5 +13,7 @@ namespace GestionCommande.Data
 
         void CreateCommand(Command cmd);
         bool SaveChanges();
+
+        void UpdateCommand(Command cmd);
     }
 }
