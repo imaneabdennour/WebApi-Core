@@ -12,7 +12,10 @@ namespace GestionCommande.Profiles
     {
         public CommandsProfile()
         {
-            CreateMap<Command, CommandReadDTO>();
+            // Source -> Target
+            CreateMap<Command, CommandReadDTO>();   // from command to commandreaddto
+
+            CreateMap<CommandCreateDTO, Command>();
         }
     }
 }

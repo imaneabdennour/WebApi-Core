@@ -31,7 +31,7 @@ namespace GestionCommande.Controllers
         }
 
         // Get api/commands/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCommandById")]  
         public ActionResult<CommandReadDTO> GetCommandById(int id)
         {
             var commandItem = _repository.GetCommandById(id);
@@ -40,6 +40,27 @@ namespace GestionCommande.Controllers
                 return Ok(_mapper.Map<CommandReadDTO>(commandItem));
 
             return NotFound();
+        }
+        
+        // Post api/commands
+        [HttpPost]
+        public ActionResult<CommandReadDTO> CreateCommand(CommandCreateDTO commandCreateDTO)
+        {
+            var commandModel = _mapper.Map<Command>(commandCreateDTO);
+
+            _repository.CreateCommand(commandModel);
+            _repository.SaveChanges();
+
+            var commandReadDTO = _mapper.Map<CommandReadDTO>(commandModel);
+
+            // Response : Created
+            return CreatedAtRoute(nameof(GetCommandById), new { Id = commandReadDTO.Id }, commandReadDTO);
+
+            /*             
+             GetCommandId is my method name ( i specified it lfoq ) | name fo route
+             I pass the Id for the method | route data
+             The content value to format in the entity body
+            */
         }
     }
 }
