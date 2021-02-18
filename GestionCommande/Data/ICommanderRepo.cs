@@ -15,5 +15,7 @@ namespace GestionCommande.Data
         bool SaveChanges();
 
         void UpdateCommand(Command cmd);
+
+        void DeleteCommand(Command cmd);
     }
 }
