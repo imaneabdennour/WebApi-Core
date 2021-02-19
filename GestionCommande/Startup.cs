@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using AutoMapper;
 using GestionCommande.Data;
 using Microsoft.AspNetCore.Builder;
@@ -42,15 +44,18 @@ namespace GestionCommande
                     {
                         Title = "Commands API",
                         Description = "Informations about my Commands API - Swagger",
-                        /*   Contact = new OpenApiContact
-                           {
-                               Name = "Imane Abdennour",
-                               Email = "imane.abdennour0@gmail.com",
-                           },
-                            */
-                        Version = "v1"
+                        Contact = new OpenApiContact
+                        {
+                           Name = "Imane Abdennour",
+                           Email = "imane.abdennour0@gmail.com",
+                        },                       
+                        Version = "v1",
                        
                     });
+                // Set the comments path for the Swagger JSON and UI.    
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
 
         }
@@ -76,6 +81,7 @@ namespace GestionCommande
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Commands API");
             });
+
         }
     }
 }

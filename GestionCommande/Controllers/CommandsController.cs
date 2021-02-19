@@ -23,7 +23,10 @@ namespace GestionCommande.Controllers
             _mapper = mapper;
         }
 
-
+        /// <summary>
+        /// Get all the commands
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<CommandReadDTO>> GetAllCommands()
         {
@@ -31,6 +34,11 @@ namespace GestionCommande.Controllers
             return Ok(_mapper.Map<IEnumerable<CommandReadDTO>>(commandItems));
         }
 
+        /// <summary>
+        /// Get a command by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // Get api/commands/{id}
         [HttpGet("{id}", Name = "GetCommandById")]  
         public ActionResult<CommandReadDTO> GetCommandById(int id)
@@ -43,6 +51,11 @@ namespace GestionCommande.Controllers
             return NotFound();
         }
         
+        /// <summary>
+        /// Create a new command
+        /// </summary>
+        /// <param name="commandCreateDTO"></param>
+        /// <returns></returns>
         // Post api/commands
         [HttpPost]
         public ActionResult<CommandReadDTO> CreateCommand(CommandCreateDTO commandCreateDTO)
@@ -64,6 +77,12 @@ namespace GestionCommande.Controllers
             */
         }
 
+        /// <summary>
+        /// Update a command
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="commandUpdateDTO"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public ActionResult<CommandReadDTO> UpdateCommand(int id, CommandUpdateDTO commandUpdateDTO)
         {
@@ -82,6 +101,11 @@ namespace GestionCommande.Controllers
             // Response : OK
         }
 
+        /// <summary>
+        /// Delete a command
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public ActionResult DeleteCommand(int id)
         {
