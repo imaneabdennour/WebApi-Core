@@ -23,6 +23,7 @@ namespace GestionCommande.Controllers
             _mapper = mapper;
         }
 
+
         [HttpGet]
         public ActionResult<IEnumerable<CommandReadDTO>> GetAllCommands()
         {
